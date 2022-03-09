@@ -6,6 +6,16 @@ import ProductService from '../service/ProductService';
 
 const productRoutes = Router();
 
+productRoutes.get('/', async (_req: Request, res: Response, next: NextFunction) => {
+  try {
+    const products = await ProductService.getAll();
+
+    return res.status(StatusCodes.OK).json(products);
+  } catch (e) {
+    return next(e);
+  }
+});
+
 productRoutes.post('/', async (req: Request, res: Response, next: NextFunction) => {
   const productInfo: Product = req.body;
 
