@@ -1,6 +1,6 @@
 import generateToken from '../jwtHandler/tokenGenerator';
 import UserModel from '../models/UserModel';
-import { JwtOptions, CustomJwtPayload, User } from '../types';
+import { JwtOptions, CustomJwtPayload, UserRequest } from '../types';
 
 const { JWT_SECRET = 'shhhhh' } = process.env;
 
@@ -9,11 +9,11 @@ const jwtOptions: JwtOptions = {
   algorithm: 'HS256',
 };
 
-const create = async ({ username, classe, level, password }: User): Promise<string> => {
+const create = async ({ username, classe, level, password }: UserRequest): Promise<string> => {
   const newUser = await UserModel.create({ username, classe, level, password });
 
   const jwtPayload: CustomJwtPayload = {
-    id: newUser.id,
+    userId: newUser.id,
     username: newUser.username,
   };
 

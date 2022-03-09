@@ -1,15 +1,15 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import UserService from '../service/UserService';
-import { StatusCodes, User } from '../types';
+import { StatusCodes, UserRequest } from '../types';
 import { userSchema, validateSchema } from './schemas';
 
 const userRoutes = Router();
 
 userRoutes.post('/', async (req: Request, res: Response, next: NextFunction) => {
-  const userInfo: User = req.body;
+  const userInfo: UserRequest = req.body;
 
   try {
-    validateSchema<User>(userSchema, userInfo);
+    validateSchema<UserRequest>(userSchema, userInfo);
 
     const token = await UserService.create(userInfo);
   

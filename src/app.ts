@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { userRoutes, loginRoutes, productRoutes } from './controllers';
+import { userRoutes, loginRoutes, productRoutes, orderRoutes } from './controllers';
 import { inputError, domainError, serverError } from './errors/middlewares';
 import authentication from './jwtHandler/middlewares/authentication';
 
@@ -12,6 +12,7 @@ app.use('/login', loginRoutes);
 
 app.use(authentication);
 app.use('/products', productRoutes);
+app.use('/orders', orderRoutes);
 
 /* ERROR MIDDLEWARES */
 app.use(inputError);

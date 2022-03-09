@@ -1,6 +1,6 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
-import { User, UserFullProps } from '../types';
+import { User, UserRequest } from '../types';
 
 const getAll = async (): Promise<RowDataPacket[]> => {
   const query = `
@@ -15,7 +15,9 @@ const getAll = async (): Promise<RowDataPacket[]> => {
   return users;
 };
 
-const create = async ({ username, classe, level, password }: User): Promise<UserFullProps> => {
+const create = async (
+  { username, classe, level, password }: UserRequest,
+): Promise<User> => {
   const query = `
     INSERT INTO
       Trybesmith.Users (username, classe, level, password)
@@ -26,12 +28,11 @@ const create = async ({ username, classe, level, password }: User): Promise<User
   const [createdRowUser] = await connection
     .execute<ResultSetHeader>(query, [username, classe, level, password]);
 
-  const createdUser: UserFullProps = {
+  const createdUser: User = {
     id: createdRowUser.insertId,
     username,
     classe,
     level,
-    password,
   };
 
   return createdUser;

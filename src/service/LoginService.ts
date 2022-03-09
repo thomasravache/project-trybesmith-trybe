@@ -18,7 +18,7 @@ const login = async ({ username, password }: Login): Promise<string> => {
   }
 
   const jwtPayload: CustomJwtPayload = {
-    id: user.id,
+    userId: user.id,
     username,
   };
 

@@ -8,6 +8,8 @@ const joiStatusCodes: JoiStatusCodes = {
   'string.min': StatusCodes.UNPROCESSABLE_ENTITY,
   'number.base': StatusCodes.UNPROCESSABLE_ENTITY,
   'number.min': StatusCodes.UNPROCESSABLE_ENTITY,
+  'array.base': StatusCodes.UNPROCESSABLE_ENTITY,
+  'array.min': StatusCodes.UNPROCESSABLE_ENTITY,
 };
 
 const inputError: ErrorRequestHandler = (

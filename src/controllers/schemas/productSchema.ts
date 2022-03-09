@@ -1,7 +1,7 @@
 import Joi, { ObjectSchema } from 'joi';
-import { Product } from '../../types';
+import { ProductRequest } from '../../types';
 
-const productSchema: ObjectSchema<Product> = Joi.object({
+const productSchema: ObjectSchema<ProductRequest> = Joi.object({
   name: Joi.string().min(3).not().empty()
     .required()
     .messages({

@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { validateSchema } from './schemas';
 import productSchema from './schemas/productSchema';
-import { Product, ProductAllProps, StatusCodes } from '../types';
+import { ProductRequest, Product, StatusCodes } from '../types';
 import ProductService from '../service/ProductService';
 
 const productRoutes = Router();
@@ -17,12 +17,12 @@ productRoutes.get('/', async (_req: Request, res: Response, next: NextFunction) 
 });
 
 productRoutes.post('/', async (req: Request, res: Response, next: NextFunction) => {
-  const productInfo: Product = req.body;
+  const productInfo: ProductRequest = req.body;
 
   try {
-    validateSchema<Product>(productSchema, productInfo);
+    validateSchema<ProductRequest>(productSchema, productInfo);
 
-    const newProduct: ProductAllProps = await ProductService.create(productInfo);
+    const newProduct: Product = await ProductService.create(productInfo);
 
     return res.status(StatusCodes.CREATED).json({ item: newProduct });
   } catch (e) {
