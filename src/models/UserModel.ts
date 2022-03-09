@@ -1,8 +1,8 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
 import { User, UserFullProps } from '../types';
 
-const getAll = async () => {
+const getAll = async (): Promise<RowDataPacket[]> => {
   const query = `
     SELECT
       *
@@ -10,7 +10,7 @@ const getAll = async () => {
       Trybesmith.Users;
   `;
 
-  const [users] = await connection.execute(query);
+  const [users] = await connection.execute<RowDataPacket[]>(query);
 
   return users;
 };
@@ -37,9 +37,25 @@ const create = async ({ username, classe, level, password }: User): Promise<User
   return createdUser;
 };
 
+const findByUserName = async (username: string): Promise<RowDataPacket> => {
+  const query = `
+    SELECT
+      *
+    FROM
+      Trybesmith.Users
+    WHERE
+      username = ?
+  `;
+
+  const [user] = await connection.execute<RowDataPacket[]>(query, [username]);
+
+  return user[0];
+};
+
 const UserModel = {
   getAll,
   create,
+  findByUserName,
 };
 
 export default UserModel;

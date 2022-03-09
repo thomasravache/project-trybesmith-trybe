@@ -1,8 +1,7 @@
 import userRoutes from './UserController';
-
-const teste = () => {};
+import loginRoutes from './LoginController';
 
 export {
   userRoutes,
-  teste,
+  loginRoutes,
 };

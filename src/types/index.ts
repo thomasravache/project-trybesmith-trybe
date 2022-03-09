@@ -1,7 +1,6 @@
-import { User, UserFullProps } from './interfaces/User';
 import StatusCodes from './enums/statusCodes';
-import { JwtOptions, JwtPayload } from './types/jwtTypes';
-import JoiStatusCodes from './types/joiStatusCodes';
+import { JoiStatusCodes, JwtOptions, JwtPayload } from './types';
+import { Login, User, UserFullProps, DomainError } from './interfaces';
 
 export {
   User,
@@ -10,4 +9,6 @@ export {
   JwtOptions,
   JwtPayload,
   JoiStatusCodes,
+  Login,
+  DomainError,
 };

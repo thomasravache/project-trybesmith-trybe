@@ -9,7 +9,7 @@ const jwtOptions: JwtOptions = {
   algorithm: 'HS256',
 };
 
-const create = async ({ username, classe, level, password }: User) => {
+const create = async ({ username, classe, level, password }: User): Promise<string> => {
   const newUser = await UserModel.create({ username, classe, level, password });
 
   const jwtPayload: JwtPayload = {
