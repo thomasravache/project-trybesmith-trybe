@@ -21,7 +21,6 @@ const inputError: ErrorRequestHandler = (
   if (err.isJoi) {
     const { details } = err;
     const { type, message } = details[0];
-    console.log(type);
 
     const statusCode = joiStatusCodes[type] || 404;
 

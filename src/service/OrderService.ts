@@ -1,7 +1,7 @@
 import generatedError from '../errors/errorGenerator';
 import OrderModel from '../models/OrderModel';
 import ProductModel from '../models/ProductModel';
-import { Order, StatusCodes } from '../types';
+import { Order, OrderFullProps, StatusCodes } from '../types';
 
 const create = async ({ userId, products }: Order): Promise<Order> => {
   const allProducts = await ProductModel.getAll();
@@ -21,8 +21,24 @@ const create = async ({ userId, products }: Order): Promise<Order> => {
   } as Order;
 };
 
+const findById = async (orderId: number): Promise<OrderFullProps> => {
+  const orders = await OrderModel.getJustOrders();
+
+  const findedOrder = orders.find((order) => order.id === orderId);
+
+  if (!findedOrder) throw generatedError('Order not found', StatusCodes.NOT_FOUND);
+
+  const order = await OrderModel.findById(orderId);
+
+  return order;
+};
+
+const findAll = async (): Promise<OrderFullProps[]> => OrderModel.findAll();
+
 const OrderService = {
   create,
+  findById,
+  findAll,
 };
 
 export default OrderService;

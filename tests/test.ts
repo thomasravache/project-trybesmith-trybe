@@ -520,7 +520,7 @@ describe("5 - Crie um endpoint para o cadastro de um pedido", () => {
   });
 });
 
-describe.skip("6 - Crie um endpoint para consultar um pedido", () => {
+describe("6 - Crie um endpoint para consultar um pedido", () => {
   let token: string;
 
   beforeEach(async () => {
@@ -601,7 +601,7 @@ describe.skip("6 - Crie um endpoint para consultar um pedido", () => {
   });
 });
 
-describe.skip("7 - Crie um endpoint para listar todos os pedidos", () => {
+describe("7 - Crie um endpoint para listar todos os pedidos", () => {
   let token: string;
 
   beforeEach(async () => {
