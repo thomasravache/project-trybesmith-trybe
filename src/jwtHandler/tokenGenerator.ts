@@ -1,8 +1,8 @@
 import jwt, { Secret } from 'jsonwebtoken';
-import { JwtOptions, JwtPayload } from '../types';
+import { JwtOptions, CustomJwtPayload } from '../types';
 
 const generateToken = (
-  payload: JwtPayload,
+  payload: CustomJwtPayload,
   secret: Secret,
   options: JwtOptions,
 ) => jwt.sign(payload, secret, options);

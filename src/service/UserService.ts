@@ -1,6 +1,6 @@
 import generateToken from '../jwtHandler/tokenGenerator';
 import UserModel from '../models/UserModel';
-import { JwtOptions, JwtPayload, User } from '../types';
+import { JwtOptions, CustomJwtPayload, User } from '../types';
 
 const { JWT_SECRET = 'shhhhh' } = process.env;
 
@@ -12,11 +12,9 @@ const jwtOptions: JwtOptions = {
 const create = async ({ username, classe, level, password }: User): Promise<string> => {
   const newUser = await UserModel.create({ username, classe, level, password });
 
-  const jwtPayload: JwtPayload = {
-    sub: {
-      id: newUser.id,
-      username: newUser.username,
-    },
+  const jwtPayload: CustomJwtPayload = {
+    id: newUser.id,
+    username: newUser.username,
   };
 
   const token = generateToken(jwtPayload, JWT_SECRET, jwtOptions);

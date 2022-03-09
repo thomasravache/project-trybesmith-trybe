@@ -1,14 +1,26 @@
 import StatusCodes from './enums/statusCodes';
-import { JoiStatusCodes, JwtOptions, JwtPayload } from './types';
-import { Login, User, UserFullProps, DomainError } from './interfaces';
+import { JoiStatusCodes, JwtOptions } from './types';
+import {
+  Login,
+  User,
+  UserFullProps,
+  DomainError,
+  Product,
+  ProductAllProps,
+  CustomRequest,
+  CustomJwtPayload,
+} from './interfaces';
 
 export {
   User,
   UserFullProps,
   StatusCodes,
   JwtOptions,
-  JwtPayload,
   JoiStatusCodes,
   Login,
   DomainError,
+  Product,
+  ProductAllProps,
+  CustomRequest,
+  CustomJwtPayload,
 };

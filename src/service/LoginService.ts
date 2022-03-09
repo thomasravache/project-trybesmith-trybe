@@ -1,7 +1,7 @@
 import generatedError from '../errors/errorGenerator';
 import generateToken from '../jwtHandler/tokenGenerator';
 import UserModel from '../models/UserModel';
-import { JwtOptions, JwtPayload, Login, StatusCodes } from '../types';
+import { JwtOptions, CustomJwtPayload, Login, StatusCodes } from '../types';
 
 const { JWT_SECRET = 'shhhhh' } = process.env;
 
@@ -17,11 +17,9 @@ const login = async ({ username, password }: Login): Promise<string> => {
     throw generatedError('Username or password invalid', StatusCodes.UNAUTHORIZED);
   }
 
-  const jwtPayload: JwtPayload = {
-    sub: {
-      id: user.id,
-      username,
-    },
+  const jwtPayload: CustomJwtPayload = {
+    id: user.id,
+    username,
   };
 
   const token = generateToken(jwtPayload, JWT_SECRET, jwtOptions);
