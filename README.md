@@ -1,4 +1,4 @@
-# Projeto Trybe Futebol Clube (TFC)
+# Projeto Trybesmith
 ![GitHub language count](https://img.shields.io/github/languages/count/thomasravache/project-trybesmith-trybe)
 ![GitHub top language](https://img.shields.io/github/languages/top/thomasravache/project-trybesmith-trybe)
 ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/thomasravache/project-trybesmith-trybe/main)
